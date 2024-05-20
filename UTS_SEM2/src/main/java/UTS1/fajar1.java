@@ -23,7 +23,7 @@ public class fajar1 {
         String pesan = keyboard.nextLine();
         
 //        System.out.println(pesan);
-        System.out.println("Silahkan Pilih Jenis Kelamin Anda :");
+        System.out.println("\nSilahkan Pilih Jenis Kelamin Anda :");
         System.out.println("1. Laki-Laki");
         System.out.println("2. Perempuan");
         System.out.println("Masukkan Pilihan (1 atau 2) : ");
@@ -44,8 +44,8 @@ public class fajar1 {
         System.out.println("\nSelamat Datang "+ jenisKelamin + " " + pesan);
         
         boolean lanjut = true;
-        
-        while (lanjut) {
+        float hasil = 0;
+        do {
             // Deklarasi variabel
             int angka1, angka2;
             char operator;
@@ -56,37 +56,42 @@ public class fajar1 {
             
             System.out.println("Masukkan angka kedua: ");
             angka2 = scanner.nextInt();
-
-            System.out.println("Masukkan operator (+, -, *, /): ");
-            String input = scanner.next();
-            operator = input.charAt(0);
-
-
-            // Menghitung hasil
-            int hasil;
-            switch (operator) {
-                case '+':
-                    hasil = angka1 + angka2;
-                    break;
-                case '-':
-                    hasil = angka1 - angka2;
-                    break;
-                case '*':
-                    hasil = angka1 * angka2;
-                    break;
-                case '/':
-                    if (angka2 == 0) {
-                    System.out.println("Pembagian dengan 0 tidak diizinkan!");
-                return;
+            
+            boolean operatorValid;
+            do{
+                operatorValid = false;
+                System.out.println("Masukkan operator (+, -, *, /): ");
+                String input = scanner.next();
+                operator = input.charAt(0);
+                
+//                int hasil;
+                switch (operator) {
+                    case '+':
+                        hasil = angka1 + angka2;
+                        break;
+                    case '-':
+                        hasil = angka1 - angka2;
+                        break;
+                    case '*':
+                        hasil = angka1 * angka2;
+                        break;
+                    case '/':
+                        if (angka2 == 0) {
+                            System.out.println("Pembagian dengan 0 tidak diizinkan!");
+                            System.out.println("Kembali ke pilihan Operator");
+                            operatorValid = true;
+                        }
+                        hasil = angka1 / angka2;
+                        break;
+                    default:
+                        System.out.println("Operator tidak valid. Pilih Operator yang valid.");
+                        operatorValid = true;
                 }
-                hasil = angka1 / angka2;
-                break;
-            default:
-                System.out.println("Operator tidak valid. Pilih Operator yang valid.");
-                return;
-            }
+            } while (operatorValid);
+            
             // Menampilkan hasil
             System.out.println("Hasil: " + hasil);
+//            
             
             System.out.println("Apakah Anda ingin melakukan perhitungan lagi? (y/n)");
             String jawab = keyboard.next();
@@ -94,10 +99,6 @@ public class fajar1 {
                 lanjut = false;
                 System.out.println("Terimakasih sudah menggunakan kalkulator. Goodbye");
             }
-        }
-        
-        
-    
-
+        } while (lanjut);
     }
 }
